@@ -1,0 +1,109 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "com.student.studentinfo",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.20.0",
+      "toolsId": "3905cd53-371f-4ff2-926c-1ba69f0acd13"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.143.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "supportedLocales":["en","de"],
+    "fallbackLocales":"en",
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.student.studentinfo.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.student.studentinfo.view",
+        "async": true
+      },
+      "routes": [
+        {
+          "name": "Routecreatestudent",
+          "pattern": "",
+          "target": [
+            "Targetcreatestudent"
+          ]
+        },
+        {
+          "name": "Routestudent",
+          "pattern": "student",
+          "target": ["Targetstudent"
+          ]
+        }
+      ],
+      "targets": {
+        "Targetcreatestudent": {
+          "id": "createstudent",
+          "name": "createstudent"
+        },
+        "Targetstudent": {
+          "id": "student",
+          "name": "student"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.student.studentinfo.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

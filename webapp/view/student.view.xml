@@ -1,0 +1,104 @@
+<mvc:View controllerName="com.student.studentinfo.controller.student"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:IT="sap.m.IconTab"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <Page id="" title="Page Student" navButtonPress="onMainPage" showNavButton="true">
+        <content>
+            <l:Grid id="_IdGrid1" defaultSpan="XL6 L6 M6 S12" width="100%">
+                <l:content>
+                    <form:SimpleForm id="_Idsf1" title="Personal Information" layout="ResponsiveGridLayout" adjustLabelSpan="false">
+                        <Label id="_IdFullName" class="LabelAlignment" labelFor="_IdFirstName" text="Full Name" required="true"/>
+                        <Input id="_IdFirstName" placeholder="First Name" submit="onSubmitInput" value="{empInfo>/name}"/>
+                        <Input id="_IdMiddleName" placeholder="Middle Name"/>
+                        <Input id="_IdLastName" placeholder="Last Name"/>
+                        <Label text="D.O.B"/>
+                        <DatePicker id="_idDOB" width="40%" required="true"/>
+                        <Label text="Gender" />
+                        <RadioButtonGroup id="_idGender">
+                            <RadioButton text="Male" selected="true"/>
+                            <RadioButton text="Female"/>
+                        </RadioButtonGroup>
+                        <Label text="Nationality" required="true"/>
+                        <Select >
+                            <core:Item text="Indian"/>
+                            <core:Item text="Non-Indian"/>
+                        </Select>
+                    </form:SimpleForm>
+                </l:content>
+                <l:content>
+                    <form:SimpleForm id="_Idsf2" title="Parent/Guardian Details">
+                        <Label text="Relationship"/>
+                        <!-- <Select id="_idPGDetails" change="onSelectChange">
+                            <core:Item key="Father" text="Father"/>
+                            <core:Item key="Mother" text="Mother"/>
+                            <core:Item key="Legal Guardian" text="Legal Guardian"/>
+                            <core:Item key="Brother" text="Brother"/>
+                            <core:Item key="Sister" text="Sister"/>
+                        </Select> -->
+<Select id="_idPGDetails" change="onSelectChange" selectedKey="{rModel>/default}" items="{rModel>/relations}">
+ <core:Item key="{rModel>key}" text="{rModel>text}"/>
+
+  </Select>
+
+
+                        <Label id="_idGPLabel" text="Father Name" />
+                        <Input id="_idGPInput" placeholder="Father Name"/>
+                        <Label text="Phone Number"/>
+                        <Input placeholder="91234567890"/>
+                        <Label text="Email Address"/>
+                        <Input placeholder="john@test.com"/>
+                    </form:SimpleForm>
+                </l:content>
+            </l:Grid>
+            <l:Grid id="_IdGrid2" defaultSpan="L12 M12 S12" width="100%">
+                <form:SimpleForm id="_Idsf3" title="Contact Details">
+                    <Label text="Flat/ House Number" />
+                    <Input placeholder="110 James street"/>
+                    <Label text="Street, City" />
+                    <Input placeholder="Gayatri Nagar, Hyderabad"/>
+                    <Label text="Country" />
+                    <Input placeholder="India" />
+                    <Label text="State" />
+                    <Input placeholder="State" />
+                    <Label text="Zipcode" />
+                    <Input placeholder="500900" type="Number"/>
+                </form:SimpleForm>
+            </l:Grid>
+
+            <l:Grid id="_IdGrid3" defaultSpan="L12 M12 S12" width="100%">
+                <IconTabBar >
+                    <items>
+                        <IconTabFilter icon="sap-icon://study-leave">
+                            <Text text="Update your previous Academic details here" />
+                        </IconTabFilter>
+                        <IconTabFilter icon="sap-icon://add-coursebook">
+                            <Text text="Update your Enrollment specific details here" />
+                        </IconTabFilter>
+                        <IconTabFilter icon="sap-icon://course-program">
+                            <Text text="Upload previous certificates here"/>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </l:Grid>
+        </content>
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <!-- <Text> -->
+                    <CheckBox text="I consent all the information provided is correct to my knowledge." required="true" select="onConsentChange" />
+                    <!-- </Text> -->
+                </contentLeft>
+                <contentRight>
+                    <Button id="_idSubmitButton" press="onSubmitForm" type="Emphasized" text="Create Student Record" enabled="true" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+
+</mvc:View>
+
+
