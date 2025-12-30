@@ -75,10 +75,10 @@
       },
       "routes": [
         {
-          "name": "Routecreatestudent",
+          "name": "RouteoverviewStudentInfo",
           "pattern": "",
           "target": [
-            "Targetcreatestudent"
+            "TargetoverviewStudentInfo"
           ]
         },
         {
@@ -86,16 +86,26 @@
           "pattern": "student",
           "target": ["Targetstudent"
           ]
+        },
+         {
+          "name": "Routeeditstudent",
+          "pattern": "editstudent",
+          "target": ["Targeteditstudent"
+          ]
         }
       ],
       "targets": {
-        "Targetcreatestudent": {
-          "id": "createstudent",
-          "name": "createstudent"
+        "TargetoverviewStudentInfo": {
+          "id": "overviewStudentInfo",
+          "name": "overviewStudentInfo"
         },
         "Targetstudent": {
           "id": "student",
           "name": "student"
+        },
+        "Targeteditstudent":{
+          "id": "editStudent",
+          "name": "editStudent"
         }
       }
     },

@@ -1,0 +1,7 @@
+<mvc:View controllerName="com.student.studentinfo.controller.editStudent"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" >
+   <Page showNavButton="true" navButtonPress="onBack">
+   </Page>
+</mvc:View>

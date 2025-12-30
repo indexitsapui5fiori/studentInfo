@@ -1,0 +1,53 @@
+<mvc:View controllerName="com.student.studentinfo.controller.overviewStudentInfo"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>sro}">
+        <headerContent>
+            <Button text="Add Record"/>
+        </headerContent>
+        <content>
+            <Table noDataText="No Records Exist" items="{sModel>/Students}" itemPress="onItemPressTable">
+                <columns>
+                    <Column>
+                    <Text text="Student ID"/>
+                    </Column>
+                     <Column>
+                        <Text text="Student Name"/>
+                    </Column>
+                     <Column>
+                        <Text text="Student Branch"/>
+                    </Column>
+                     <Column>
+                        <Text text="Student Location"/>
+                    </Column>
+                     <Column>
+                        <Text text="Student Marks"/>
+                    </Column>
+                    <Column>
+                        <Text text="Merit"/>
+                    </Column>
+                </columns>
+                <items>
+                <ColumnListItem type="Navigation" >
+                <cells>
+                <Text text="{sModel>StudId}"/>
+                   <Text text="{sModel>Name}"/>
+                      <Text text="{sModel>Branch}"/>
+                         <Text text="{sModel>Location}"/>
+                            <Text text="{sModel>Marks}"/>
+                               <Text text="{sModel>Merit}"/>
+                </cells>
+                </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+        <footer>
+            <Bar id="_IDGenBar">
+                <contentLeft>
+                    <Button id="_IDGenButton" type="Emphasized" text="{i18n>create}" press="onCreateRecord"/>
+                </contentLeft>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

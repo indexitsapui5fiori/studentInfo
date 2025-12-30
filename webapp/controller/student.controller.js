@@ -30,29 +30,29 @@ sap.ui.define([
 
         },
         onMainPage(){
-             this.getOwnerComponent().getRouter().navTo("Routecreatestudent")
+             this.getOwnerComponent().getRouter().navTo("RouteoverviewStudentInfo")
           
         },
         onSubmitForm(){
           var empName = this.getView().getModel("empInfo").getProperty("/name");
              var that=this
-    //         MessageBox.show(
-	// 	           "Do you want to submit the Information ??", {
-	// 		icon: MessageBox.Icon.INFORMATION,
-	// 		title: "Submit Information",
-	// 		actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-	// 		emphasizedAction: MessageBox.Action.YES,
-	// 		onClose: function (oAction) {
+            MessageBox.show(
+		           "Do you want to submit the Information ??", {
+			icon: MessageBox.Icon.INFORMATION,
+			title: "Submit Information",
+			actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+			emphasizedAction: MessageBox.Action.YES,
+			onClose: function (oAction) {
                
-    //             if(oAction==="YES"){
-    //                   var oRouter=that.getOwnerComponent().getRouter();
-    //                   oRouter.navTo("Routecreatestudent");
-    //                   that.onClearForm();
+                if(oAction==="YES"){
+                      var oRouter=that.getOwnerComponent().getRouter();
+                      oRouter.navTo("RouteoverviewStudentInfo");
+                      that.onClearForm();
 
-    //             }
-    //         }
-	// 	}
-	// );
+                }
+            }
+		}
+	);
 
     
 
