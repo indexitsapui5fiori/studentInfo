@@ -8,7 +8,7 @@ sap.ui.define([
 
     return Controller.extend("com.student.studentinfo.controller.student", {
         onInit() {
-
+            //Load the json
             var oNationalityModel = new sap.ui.model.json.JSONModel(
                 sap.ui.require.toUrl("com/student/studentinfo/model/nationality.json")
             );
@@ -19,7 +19,6 @@ sap.ui.define([
             }
             var oModel = new JSONModel(oData);
             this.getView().setModel(oModel, "empInfo");
-
             var oRelations = new JSONModel({
                 default: "Father",
                 relations: [
@@ -31,10 +30,8 @@ sap.ui.define([
                 ]
             });
             this.getView().setModel(oRelations, "rModel");
-
             // var nationality = new JSONModel();
             // this.getView().setModel(nationality, "nationalModel");
-
             //  Nationality external JSON
             var oNationalityModel = new sap.ui.model.json.JSONModel();
             oNationalityModel.loadData("model/nationality.json");
@@ -57,7 +54,6 @@ sap.ui.define([
                         var oRouter = that.getOwnerComponent().getRouter();
                         oRouter.navTo("RouteoverviewStudentInfo");
                         that.onClearForm();
-
                     }
                 }
             });
@@ -87,67 +83,57 @@ sap.ui.define([
         //     }
         // },
         onVH_Nationality: function (oEvent) {
-    this._oSourceInput = oEvent.getSource(); 
-
-    var oView = this.getView();
-
-    if (!this._oDialog) {
-        sap.ui.core.Fragment.load({
-            id: oView.getId(),
-            name: "com.student.studentinfo.view.nationality",
-            controller: this
-        }).then(function (oDialog) {
-            this._oDialog = oDialog;
-            oView.addDependent(oDialog);
-            oDialog.open();
-        }.bind(this));
-    } else {
-        this._oDialog.open();
-    }
-},
-
+            this._oSourceInput = oEvent.getSource();
+            var oView = this.getView();
+            if (!this._oDialog) {
+                sap.ui.core.Fragment.load({
+                    id: oView.getId(),
+                    name: "com.student.studentinfo.view.nationality",
+                    controller: this
+                }).then(function (oDialog) {
+                    this._oDialog = oDialog;
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                }.bind(this));
+            } else {
+                this._oDialog.open();
+            }
+        },
         onClose: function () {
             this._oDialog.close();
             //this._oDialog.destroy();
         },
-      onCountryClick: function (oEvent) {
-    var oItem = oEvent.getSource();
-    var oCtx = oItem.getBindingContext("nationalModel");
+        onCountryClick: function (oEvent) {
+            var oItem = oEvent.getSource();
+            var oCtx = oItem.getBindingContext("nationalModel");
+            var sCountryName = oCtx.getProperty("name");
+            var sCountryCode = oCtx.getProperty("code");
+            // Set value back to calling Input
+            if (this._oSourceInput) {
+                this._oSourceInput.setValue(sCountryName);
+            }
+            // OPTIONAL: store code in model
+            this.getView().getModel("empInfo").setProperty(
+                "/nationalityCode",
+                sCountryCode
+            );
+            this._oDialog.close();
+        },
 
-    var sCountryName = oCtx.getProperty("name");
-    var sCountryCode = oCtx.getProperty("code");
+        onNationalitySearch: function (oEvent) {
+            var sValue = oEvent.getParameter("newValue");
 
-    // Set value back to calling Input
-    if (this._oSourceInput) {
-        this._oSourceInput.setValue(sCountryName);
-    }
-
-    // OPTIONAL: store code in model
-    this.getView().getModel("empInfo").setProperty(
-        "/nationalityCode",
-        sCountryCode
-    );
-
-    this._oDialog.close();
-},
-
-      onNationalitySearch: function (oEvent) {
-    var sValue = oEvent.getParameter("newValue");
-
-    var oList = sap.ui.getCore().byId(
-        this.getView().getId() + "--idList"
-    );
-
-    var oBinding = oList.getBinding("items");
-
-    var aFilters = [];
-    if (sValue) {
-        aFilters.push(new sap.ui.model.Filter("name",
-            sap.ui.model.FilterOperator.Contains, sValue));
-    }
-
-    oBinding.filter(aFilters);
-}
+            var oList = sap.ui.getCore().byId(
+                this.getView().getId() + "--idList"
+            );
+            var oBinding = oList.getBinding("items");
+            var aFilters = [];
+            if (sValue) {
+                aFilters.push(new sap.ui.model.Filter("name",
+                    sap.ui.model.FilterOperator.Contains, sValue));
+            }
+            oBinding.filter(aFilters);
+        }
 
     });
 });
