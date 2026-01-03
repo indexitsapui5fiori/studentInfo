@@ -23,10 +23,11 @@
                             <RadioButton text="Female"/>
                         </RadioButtonGroup>
                         <Label text="Nationality" required="true"/>
-                        <Select >
+                        <Input showValueHelp="true" valueHelpRequest="onVH_Nationality"/>
+                        <!-- <Select >
                             <core:Item text="Indian"/>
                             <core:Item text="Non-Indian"/>
-                        </Select>
+                        </Select> -->
                     </form:SimpleForm>
                 </l:content>
                 <l:content>

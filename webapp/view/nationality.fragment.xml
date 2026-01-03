@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog title="Choose Nationality">
+
+        <content>
+            <SearchField liveChange="onNationalitySearch"/>
+
+            <List
+                id="idList"
+                items="{nationalModel>/nationalityData}"
+                growing="true"
+                growingThreshold="10">
+
+                <StandardListItem
+                    title="{nationalModel>name}"
+                    description="{nationalModel>code}"
+                    type="Active"
+                    press="onCountryClick"/>
+            </List>
+        </content>
+
+        <beginButton>
+            <Button text="Close" press="onClose"/>
+        </beginButton>
+
+    </Dialog>
+</core:FragmentDefinition>
