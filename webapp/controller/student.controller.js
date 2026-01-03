@@ -13,7 +13,6 @@ sap.ui.define([
                 sap.ui.require.toUrl("com/student/studentinfo/model/nationality.json")
             );
             this.getView().setModel(oNationalityModel, "nationalModel");
-
             var oData = {
                 "name": ""
             }
